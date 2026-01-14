@@ -98,10 +98,9 @@ class PropertyEq(Rule):
 
     def aql_add_filter(self, filters):
         filter_ = {
-            "$and": [
-                {"property.key": {"$eq": self.property_key}},
-                {"property.value": {"$eq": self.property_value}},
-            ]
+            f"@{self.property_key}": {
+                "$eq": self.property_value,
+            }
         }
         filters.append(filter_)
         return filters
